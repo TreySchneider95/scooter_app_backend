@@ -59,7 +59,7 @@ def get_bird():
         "Authorization": f"Bird {os.getenv('BIRD_ACCESS')}",
         "Device-id": str(myuuid),
         "App-Version": "4.41.0",
-        "Location": str({"latitude":47.6061,"longitude":122.3328,"altitude":500,"accuracy":100,"speed":-1,"heading":-1})
+        "Location": str({"latitude":str(47.6061),"longitude":str(122.3328),"altitude":500,"accuracy":100,"speed":-1,"heading":-1})
     }
     response = requests.get(url, headers = headers)
     if response.status_code == 200:
