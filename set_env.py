@@ -11,3 +11,10 @@ def bird_set(access, refresh, uuid):
     set_key(dotenv_path=env_file_path, key_to_set="BIRD_LAST_REFRESH", value_to_set=str(datetime.now()))
     set_key(dotenv_path=env_file_path, key_to_set="BIRD_UUID", value_to_set=str(uuid))
     return "set new bird keys"
+
+
+
+def lime_set(lime_token):
+    set_key(dotenv_path=env_file_path, key_to_set="LIME_TOKEN", value_to_set=lime_token)
+    return "set new lime token"
+    

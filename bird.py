@@ -6,6 +6,8 @@ import os
 from set_env import bird_set
 from datetime import datetime
 from utils import time_check
+import json
+
 
 load_dotenv()
 
@@ -53,13 +55,18 @@ def get_bird():
 
     # ==============================Will need to get user lat and long from frontend=========================================
 
-    url = "https://api.birdapp.com/bird/nearby?latitude=47.6061&longitude=122.3328&radius=1000"
+    lat = 47.6580
+    long = -122.3421
+
+    url = f"https://api-bird.prod.birdapp.com/bird/nearby?latitude={lat}&longitude={long}&radius=500"
     myuuid = uuid.uuid4()
     headers = {
-        "Authorization": f"Bird {os.getenv('BIRD_ACCESS')}",
+        "Authorization": f"Bearer {os.getenv('BIRD_ACCESS')}",
+        "User-Agent": "Bird/4.119.0(co.bird.Ride; build:3; iOS 14.3.0) Alamofire/5.2.2",
+        "legacyrequest": "false",
         "Device-id": str(myuuid),
-        "App-Version": "4.41.0",
-        "Location": str({"latitude":str(47.6061),"longitude":str(122.3328),"altitude":500,"accuracy":100,"speed":-1,"heading":-1})
+        "App-Version": "4.119.0",
+        "Location": str(json.dumps({"latitude":lat,"longitude":long,"altitude":500,"accuracy":65,"speed":-1,"heading":-1}))
     }
     response = requests.get(url, headers = headers)
     if response.status_code == 200:
